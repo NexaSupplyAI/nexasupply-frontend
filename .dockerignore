@@ -1,0 +1,9 @@
+node_modules
+dist/*
+!dist/nexasupply-frontend/
+!dist/nexasupply-frontend/browser/
+!dist/nexasupply-frontend/browser/**
+.angular
+.vscode
+*.log
+server.test.mjs

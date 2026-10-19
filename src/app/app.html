@@ -1,0 +1,22 @@
+<div class="app-shell">
+  <aside class="sidebar" [class.open]="menuOpen()">
+    <div class="brand"><span class="brand-mark">NS</span><div><strong>NexaSupply</strong><small>Operations Console</small></div></div>
+    <nav (click)="menuOpen.set(false)">
+      @for (item of navigation; track item.path) {
+        <a [routerLink]="item.path" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: item.path === '/' }"><span class="nav-icon">{{ item.icon }}</span>{{ item.label }}</a>
+      }
+    </nav>
+    <div class="sidebar-footer"><span class="status-dot"></span><span>Backend local · 5 servicios</span></div>
+  </aside>
+  <section class="main-area">
+    <header class="topbar">
+      <button class="menu-button" type="button" (click)="menuOpen.set(!menuOpen())" aria-label="Abrir menú">☰</button>
+      <div><strong>Panel operativo</strong><small>Inventario, ventas, abastecimiento e IA</small></div>
+      <button class="refresh-button" type="button" (click)="reload()">Recargar vista</button>
+    </header>
+    <main class="content"><router-outlet /></main>
+  </section>
+</div>
+@if (notifications.message()) {
+  <div class="toast" [class.error]="notifications.kind() === 'error'" role="status">{{ notifications.message() }}<button type="button" (click)="notifications.clear()">×</button></div>
+}
